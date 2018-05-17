@@ -200,6 +200,8 @@ cat > spinnaker-config.yaml <<EOF
 storageBucket: $BUCKET
 kubeConfig:
   enabled: true
+  secretName: my-kubeconfig
+  secretKey: config
   contexts:
   - $CL1_CONTEXT
   - $CL2_CONTEXT
