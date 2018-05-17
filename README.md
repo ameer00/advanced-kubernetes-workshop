@@ -68,4 +68,4 @@
 
 # Lab Guide
 
-[Lab Guide](lab_guide.md
+[Lab Guide](lab_guide.md)
