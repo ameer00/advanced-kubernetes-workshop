@@ -5,7 +5,7 @@ Run this lab from Cloud Shell
 
 Get all files associated with this workshop by cloning the following repo.
 ```
-git clone https://github.com/henrybell/advanced-kubernetes-bootcamp.git
+git clone https://github.com/ameer00/spinnaker-on-gke.git
 ```
 ## Tools
 > 1 min
@@ -152,7 +152,7 @@ gcloud projects add-iam-policy-binding $PROJECT --role roles/storage.admin --mem
 ```
 Create the service account key
 ```
-cd ~/advanced-kubernetes-bootcamp/module-2
+cd ~/spinnaker-on-gke
 gcloud iam service-accounts keys create spinnaker-key.json --iam-account $SPINNAKER_SA_EMAIL
 ```
 Create a Cloud Storage bucket for Spinnaker
@@ -187,7 +187,7 @@ kubectl create secret generic --from-file=config=$HOME/.kube/config mc-taw-spinn
 Create configuration for the Spinnaker config YAML.
 Define variables
 ```
-cd ~/advanced-kubernetes-bootcamp/module-2
+cd ~/spinnaker-on-gke
 export SA_JSON=$(cat spinnaker-key.json)
 export BUCKET=$PROJECT-spinnaker-conf
 export CL1_CONTEXT="gke_"$PROJECT"_us-west1-a_cluster-1"
@@ -260,9 +260,9 @@ Only provide app name `myapp` and email which can be arbitrary like `abc@xyz.com
 To avoid having to enter the information manually in the UI, use the Kubernetes command-line interface to create load balancers (or `Clusters`) and Ingresses (or `Security Groups`) for your services. Alternatively, you can perform this operation in the Spinnaker UI.
 ```
 kubectx cluster-1
-kubectl apply -f ~/advanced-kubernetes-bootcamp/module-2/cl1-k8s
+kubectl apply -f ~/spinnaker-on-gke/cl1-k8s
 kubectx cluster-2
-kubectl apply -f ~/advanced-kubernetes-bootcamp/module-2/cl2-k8s
+kubectl apply -f ~/spinnaker-on-gke/cl2-k8s
 ```
 ## Prepare Container Registry
 > 5 mins
@@ -300,7 +300,7 @@ gcr.io/qwiklabs-gcp-28ba43f03d974ba6/web-server
 
 Deploy pipeline via JSON
 ```
-cd ~/advanced-kubernetes-bootcamp/module-2/spinnaker
+cd ~/spinnaker-on-gke/spinnaker
 export GCP_ZONE=us-west1-a
 sed -e s/PROJECT/$PROJECT/g -e s/GCP_ZONE/$GCP_ZONE/g pipeline.json | curl -d@- -X \
     POST --header "Content-Type: application/json" --header \
@@ -376,7 +376,7 @@ export CLUSTER2_INGRESS_IP=$(kubectl get ingress myapp-cl2-ingress -o jsonpath='
 Use `cluster-3` for global load balancing.  Create the NGINX ConfigMap in `cluster-3`
 ```
 kubectx cluster-3
-cd ~/advanced-kubernetes-bootcamp/module-2/lb
+cd ~/spinnaker-on-gke/lb
 sed -e s/CLUSTER1_INGRESS_IP/$CLUSTER1_INGRESS_IP\ weight=1/g -e s/CLUSTER2_INGRESS_IP/$CLUSTER2_INGRESS_IP\ weight=1/g glb-configmap-var.yaml > glb-configmap.yaml
 ```
 Confirm that the Ingress IP addresses are in the output file.
@@ -466,7 +466,7 @@ We can use:
 
 Lets send 100% of the traffic to `prod` pods in `cluster-1`.  Istio uses `RouteRules` based on a match criteria and `weights` to route traffic to multiple deployments under one service.  Match criteria can be based on `labels` like `"stack": "canary"` or `"stack": "prod"`, or it can be based on HTTP Header info (for example, specific users or type of browsers etc).  For this workshop, you use `labels` to match traffic for `canary` and `prod` and `weights` to determine how much traffic to send for each deployment.
 ```
-cd ~/advanced-kubernetes-bootcamp/module-2/lb
+cd ~/spinnaker-on-gke/lb
 kubectx cluster-1
 kubectl apply -f myapp-rr-100p.yaml
 ```
