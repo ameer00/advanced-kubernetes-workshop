@@ -1,4 +1,4 @@
-# Spinnaker on GKE
+# Operations and Best Practices
 
 ![Module-2. Lab Diagram](https://github.com/henrybell/advanced-kubernetes-bootcamp/blob/master/module-2/diagrams/lab-diag.png)*Module-2. Lab Diagram*
 
@@ -8,7 +8,7 @@
 
 ## Tools and Repo
 
-+  Clone Repo with workshop files
++  Clond Repo with workshop files
 +  Install following tools in Cloud Shell
     
     +  `Helm` for application management
@@ -40,7 +40,7 @@
 
 +  Prepare Container Registry (5 mins)
     +  Push a simple `web-server` app to Container Registry with version tag `v1.0.0`
-    +  Push `busyboxplus` to Container registry to simulate canary testing
+    +  Push `busyboxplus` to COntainer registry to simulate canary testing
     
 +  Configure a **Deploy** pipeline in Spinnaker to deploy a web app to both clusters (5 mins)
 
@@ -69,3 +69,17 @@
 # Lab Guide
 
 [Lab Guide](lab_guide.md)
+
+# Presentations
+
+Dependent upon labs
+
+# Lab Materials and Useful Links
+
+[Multicloud TAW - Modules 2, 3, 4, and 5](https://docs.google.com/document/d/1FnNiKuS5K6J8Lct2qStQ1N8r8gR3snc7TaDzPDgIODw/edit)
+
+[Multicloud Workshop Presentation](https://docs.google.com/presentation/d/1gLWKMZr9U6AqtjyxH2LFE7m03ZWFnjjrarj4nS7_s6c/edit#slide=id.g2dfddef4d5_0_1435)  
+
+[Continuous Delivery with Spinnaker on Kubernetes Engine](https://cloud.google.com/solutions/continuous-delivery-spinnaker-kubernetes-engine)
+
+[Istio Route Rules](https://istio.io/docs/concepts/traffic-management/rules-configuration.html)
