@@ -10,20 +10,19 @@ git clone https://github.com/ameer00/spinnaker-on-gke.git
 ## Tools
 > 1 min
 
-Install kubectx/kubens
+Run the following bash script to install tools required for this workshop.
 ```
-mkdir bin
-export PATH=$PATH:~/bin/
-sudo git clone https://github.com/ahmetb/kubectx ~/kubectx
-sudo ln -s ~/kubectx/kubectx ~/bin/kubectx
-sudo ln -s ~/kubectx/kubens ~/bin/kubens
+cd ~/spinnaker-on-gke/tools
+. tools.sh
 ```
-Install helm
-```
-curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
-chmod 700 get_helm.sh
-./get_helm.sh
-```
+The following tools are installed:
+* kubectx/kubens
+* Helm
+* kube-ps1
+Additional tools not required for this workshop are also installed:
+* kops
+* awscli
+
 ## Install Kubernetes Engine Clusters
 > 5 mins
 
