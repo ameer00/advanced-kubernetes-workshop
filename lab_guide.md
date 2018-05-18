@@ -72,9 +72,9 @@ Download istio nightly build for 0.8 (*should be released by bootcamp*)
 ```
 mkdir istio8
 cd istio8
-wget https://storage.googleapis.com/istio-prerelease/daily-build/release-0.8-20180425-19-12/istio-release-0.8-20180425-19-12-linux.tar.gz
-tar -xzvf istio-release-0.8-20180425-19-12-linux.tar.gz
-cd istio-release-0.8-20180425-19-12/
+wget https://storage.googleapis.com/istio-prerelease/daily-build/release-0.8-20180517-03-38/istio-release-0.8-20180517-03-38-linux.tar.gz
+tar -xzvf istio-release-0.8-20180517-03-38-linux.tar.gz
+cd istio-release-0.8-20180517-03-38/
 ```
 Install Istio to `cluster-1` and `cluster-2` via helm
 
