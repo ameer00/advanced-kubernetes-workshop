@@ -216,6 +216,9 @@ gcs:
 minio:
   enabled: false
 
+# Disable jenkins
+jenkins:
+  enabled: false
 
 
 # Configure your Docker registries here
