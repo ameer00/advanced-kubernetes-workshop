@@ -235,7 +235,7 @@ Install Spinnaker.
 
 ***This step could take up to 10 minutes (use timeout of 600 seconds)***
 ```
-helm install -n mc-taw . -f spinnaker-config.yaml --timeout 600
+helm install -n spinnaker . -f spinnaker-config.yaml --timeout 600
 ```
 Expose the `DECK` (Spinnaker frontend) pod.
 ```
