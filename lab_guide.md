@@ -210,8 +210,6 @@ gcs:
   project: $PROJECT
   jsonKey: '$SA_JSON'
 
-
-
 # Disable minio the default
 minio:
   enabled: false
@@ -219,7 +217,6 @@ minio:
 # Disable jenkins
 jenkins:
   enabled: false
-
 
 # Configure your Docker registries here
 accounts:
