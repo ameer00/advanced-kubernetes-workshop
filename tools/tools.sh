@@ -24,6 +24,6 @@ PATH=$PATH:$HOME/.local/bin/
 # Install kube ps1
 git clone https://github.com/jonmosco/kube-ps1.git
 echo 'source $HOME/kube-ps1/kube-ps1.sh' >> ~/.bashrc
-export VAR="PS1='[\W $(kube_ps1)]\$ '"
+export VAR="PS1='[\W \$(kube_ps1)]\$ '"
 echo $VAR >> ~/.bashrc
 source $HOME/.bashrc
