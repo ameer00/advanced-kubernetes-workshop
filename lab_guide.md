@@ -19,6 +19,7 @@ The following tools are installed:
 * kubectx/kubens
 * Helm
 * kube-ps1
+
 Additional tools not required for this workshop are also installed:
 * kops
 * awscli
@@ -32,8 +33,8 @@ gcloud config set compute/zone us-west1-a
 ```
 Create three (3) Kubernetes Engine clusters.  Cluster-1 and cluster-2 run the applications.  Cluster-3 runs Spinnaker, NGINX global load balancer and Container Registry.  Cluster-3 needs to be 3 nodes with `n1-standard-2` due to Spinnaker compute requirements.
 ```
-gcloud container clusters create cluster-1 --async --cluster-version=1.9.6-gke.1
-gcloud container clusters create cluster-2 --async --cluster-version=1.9.6-gke.1
+gcloud container clusters create cluster-1 --async --machine-type=n1-standard-2 --cluster-version=1.9.6-gke.1
+gcloud container clusters create cluster-2 --async --machine-type=n1-standard-2 --cluster-version=1.9.6-gke.1
 gcloud container clusters create cluster-3 --async --machine-type=n1-standard-2 --cluster-version=1.9.6-gke.1
 ```
 Clusters take 3-5 minutes to be deployed and ready.  Check the Cloud Console **Kubernetes Engine > Kubernetes clusters** page for status.
