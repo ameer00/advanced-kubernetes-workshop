@@ -20,10 +20,6 @@ The following tools are installed:
 * Helm
 * kube-ps1
 
-Additional tools not required for this workshop are also installed:
-* kops
-* awscli
-
 ## Install Kubernetes Engine Clusters
 > 5 mins
 
