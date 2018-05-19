@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Install kubectx/kubens
+cd $HOME
 mkdir bin
 PATH=$PATH:$HOME/bin/
 sudo git clone https://github.com/ahmetb/kubectx $HOME/kubectx
