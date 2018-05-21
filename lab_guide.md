@@ -25,7 +25,9 @@ The following tools are installed:
 
 Set default zone.
 ```
-gcloud config set compute/zone us-west1-a
+export GCP_REGION=us-west1
+export GCP_ZONE=us-west1-a
+gcloud config set compute/zone $GCP_ZONE
 ```
 Create three (3) Kubernetes Engine clusters.  Cluster-1 and cluster-2 run the applications.  Cluster-3 runs Spinnaker, NGINX global load balancer and Container Registry.  Cluster-3 needs to be 3 nodes with `n1-standard-2` due to Spinnaker compute requirements.
 ```
@@ -40,15 +42,15 @@ Clusters take 3-5 minutes to be deployed and ready.  Check the Cloud Console **K
 
 After the clusters are Ready, create `kubeconfig` for all three clusters.
 ```
-gcloud container clusters get-credentials cluster-1 --zone us-west1-a --project $(gcloud info --format='value(config.project)')
-gcloud container clusters get-credentials cluster-2 --zone us-west1-a --project $(gcloud info --format='value(config.project)')
-gcloud container clusters get-credentials cluster-3 --zone us-west1-a --project $(gcloud info --format='value(config.project)')
+gcloud container clusters get-credentials cluster-1 --zone $GCP_ZONE --project $(gcloud info --format='value(config.project)')
+gcloud container clusters get-credentials cluster-2 --zone $GCP_ZONE --project $(gcloud info --format='value(config.project)')
+gcloud container clusters get-credentials cluster-3 --zone $GCP_ZONE --project $(gcloud info --format='value(config.project)')
 ```
 Rename cluster context for easy switching.
 ```
-kubectx cluster-1=gke_$(gcloud info --format='value(config.project)')_us-west1-a_cluster-1
-kubectx cluster-2=gke_$(gcloud info --format='value(config.project)')_us-west1-a_cluster-2
-kubectx cluster-3=gke_$(gcloud info --format='value(config.project)')_us-west1-a_cluster-3
+kubectx cluster-1="gke_"$(gcloud info --format='value(config.project)')"_"$GCP_ZONE"_cluster-1"
+kubectx cluster-2="gke_"$(gcloud info --format='value(config.project)')"_"$GCP_ZONE"_cluster-2"
+kubectx cluster-3="gke_"$(gcloud info --format='value(config.project)')"_"$GCP_ZONE"_cluster-3"
 ```
 Check new context names
 ```
@@ -154,7 +156,7 @@ gcloud iam service-accounts keys create spinnaker-key.json --iam-account $SPINNA
 Create a Cloud Storage bucket for Spinnaker
 ```
 export BUCKET=$PROJECT-spinnaker-conf
-gsutil mb -c regional -l us-west1 gs://$BUCKET
+gsutil mb -c regional -l $GCP_REGION gs://$BUCKET
 ```
 Clone the Spinnaker git repo and build
 ```
@@ -166,8 +168,8 @@ Grant user `client` cluster admin role and create `Client Certs` for `cluster-1`
 ```
 kubectl create clusterrolebinding client-cluster-admin-binding --clusterrole=cluster-admin --user=client --context cluster-1
 kubectl create clusterrolebinding client-cluster-admin-binding --clusterrole=cluster-admin --user=client --context cluster-2
-CLOUDSDK_CONTAINER_USE_CLIENT_CERTIFICATE=True gcloud container clusters get-credentials cluster-1 --zone us-west1-a
-CLOUDSDK_CONTAINER_USE_CLIENT_CERTIFICATE=True gcloud container clusters get-credentials cluster-2 --zone us-west1-a
+CLOUDSDK_CONTAINER_USE_CLIENT_CERTIFICATE=True gcloud container clusters get-credentials cluster-1 --zone $GCP_ZONE
+CLOUDSDK_CONTAINER_USE_CLIENT_CERTIFICATE=True gcloud container clusters get-credentials cluster-2 --zone $GCP_ZONE
 ```
 Ensure that client certs are present in the kubeconfig file
 ```
@@ -183,11 +185,11 @@ kubectl create secret generic --from-file=config=$HOME/.kube/config my-kubeconfi
 Create configuration for the Spinnaker config YAML.
 Define variables
 ```
-cd ~/spinnaker-on-gke
+cd ~/advanced-kubernetes-bootcamp/module-2
 export SA_JSON=$(cat spinnaker-key.json)
 export BUCKET=$PROJECT-spinnaker-conf
-export CL1_CONTEXT="gke_"$PROJECT"_us-west1-a_cluster-1"
-export CL2_CONTEXT="gke_"$PROJECT"_us-west1-a_cluster-2"
+export CL1_CONTEXT="gke_"$PROJECT"_"$GCP_ZONE"_cluster-1"
+export CL2_CONTEXT="gke_"$PROJECT"_"$GCP_ZONE"_cluster-2"
 ```
 Create the config file
 ```
@@ -298,8 +300,7 @@ gcr.io/qwiklabs-gcp-28ba43f03d974ba6/web-server
 
 Deploy pipeline via JSON
 ```
-cd ~/spinnaker-on-gke/spinnaker
-export GCP_ZONE=us-west1-a
+cd ~/advanced-kubernetes-bootcamp/module-2/spinnaker
 sed -e s/PROJECT/$PROJECT/g -e s/GCP_ZONE/$GCP_ZONE/g pipeline.json | curl -d@- -X \
     POST --header "Content-Type: application/json" --header \
     "Accept: /" http://localhost:8080/gate/pipelines
