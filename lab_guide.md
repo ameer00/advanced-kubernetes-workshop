@@ -185,7 +185,7 @@ kubectl create secret generic --from-file=config=$HOME/.kube/config my-kubeconfi
 Create configuration for the Spinnaker config YAML.
 Define variables
 ```
-cd ~/advanced-kubernetes-bootcamp/module-2
+cd ~/spinnaker-on-gke
 export SA_JSON=$(cat spinnaker-key.json)
 export BUCKET=$PROJECT-spinnaker-conf
 export CL1_CONTEXT="gke_"$PROJECT"_"$GCP_ZONE"_cluster-1"
