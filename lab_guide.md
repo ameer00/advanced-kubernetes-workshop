@@ -300,7 +300,7 @@ gcr.io/qwiklabs-gcp-28ba43f03d974ba6/web-server
 
 Deploy pipeline via JSON
 ```
-cd ~/advanced-kubernetes-bootcamp/module-2/spinnaker
+cd ~/spinnaker-on-gke/spinnaker
 sed -e s/PROJECT/$PROJECT/g -e s/GCP_ZONE/$GCP_ZONE/g pipeline.json | curl -d@- -X \
     POST --header "Content-Type: application/json" --header \
     "Accept: /" http://localhost:8080/gate/pipelines
