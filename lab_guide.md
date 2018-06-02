@@ -66,13 +66,11 @@ Current context is highlighted.
 ## Install Istio on cluster-1 and cluster-2
 > 5 mins
 
-Download istio nightly build for 0.8 (*should be released by bootcamp*)
+Download the latest Istio release
 ```
-mkdir istio8
-cd istio8
-wget https://storage.googleapis.com/istio-prerelease/daily-build/release-0.8-20180517-03-38/istio-release-0.8-20180517-03-38-linux.tar.gz
-tar -xzvf istio-release-0.8-20180517-03-38-linux.tar.gz
-cd istio-release-0.8-20180517-03-38/
+cd ~
+curl -L https://git.io/getLatestIstio | sh -
+cd istio-0.8.0
 ```
 Install Istio to `cluster-1` and `cluster-2` via helm
 
