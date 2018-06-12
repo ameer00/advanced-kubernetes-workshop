@@ -8,6 +8,9 @@ sudo git clone https://github.com/ahmetb/kubectx $HOME/kubectx
 sudo ln -s $HOME/kubectx/kubectx $HOME/bin/kubectx
 sudo ln -s $HOME/kubectx/kubens $HOME/bin/kubens
 
+# Install hey
+go get -u github.com/rakyll/hey
+
 # Install Helm
 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
 chmod 700 get_helm.sh
