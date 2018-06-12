@@ -10,7 +10,7 @@
     {
       "clusters": [
         {
-          "account": "gke_PROJECT_GCP_ZONE_cluster-1",
+          "account": "gke_PROJECT_ZONE_1_GKE_1",
           "application": "myapp",
           "cloudProvider": "kubernetes",
           "containers": [
@@ -86,7 +86,7 @@
           "volumeSources": []
         }
       ],
-      "name": "Deploy Canary to Cluster-1",
+      "name": "Deploy Canary to cl1 Cluster",
       "refId": "1",
       "requisiteStageRefIds": [],
       "type": "deploy"
@@ -94,7 +94,7 @@
     {
       "clusters": [
         {
-          "account": "gke_PROJECT_GCP_ZONE_cluster-2",
+          "account": "gke_PROJECT_ZONE_2_GKE_2",
           "application": "myapp",
           "cloudProvider": "kubernetes",
           "containers": [
@@ -170,13 +170,13 @@
           "volumeSources": []
         }
       ],
-      "name": "Deploy Canary to Cluster-2",
+      "name": "Deploy Canary to cl2 Cluster",
       "refId": "2",
       "requisiteStageRefIds": [],
       "type": "deploy"
     },
     {
-      "account": "gke_PROJECT_GCP_ZONE_cluster-1",
+      "account": "gke_PROJECT_ZONE_1_GKE_1",
       "annotations": {
         "sidecar.istio.io/inject": "false"
       },
@@ -215,7 +215,7 @@
       ],
       "dnsPolicy": "ClusterFirst",
       "labels": {},
-      "name": "Test Canary on Cluster-1",
+      "name": "Test Canary on cl1",
       "namespace": "default",
       "refId": "3",
       "requisiteStageRefIds": [
@@ -224,7 +224,7 @@
       "type": "runJob"
     },
     {
-      "account": "gke_PROJECT_GCP_ZONE_cluster-2",
+      "account": "gke_PROJECT_ZONE_2_GKE_2",
       "annotations": {
         "sidecar.istio.io/inject": "false"
       },
@@ -263,7 +263,7 @@
       ],
       "dnsPolicy": "ClusterFirst",
       "labels": {},
-      "name": "Test Canary on Cluster-2",
+      "name": "Test Canary on cl2",
       "namespace": "default",
       "refId": "4",
       "requisiteStageRefIds": [
@@ -287,7 +287,7 @@
     {
       "clusters": [
         {
-          "account": "gke_PROJECT_GCP_ZONE_cluster-1",
+          "account": "gke_PROJECT_ZONE_1_GKE_1",
           "application": "myapp",
           "cloudProvider": "kubernetes",
           "containers": [
@@ -363,7 +363,7 @@
           "volumeSources": []
         }
       ],
-      "name": "Deploy on Cluster-1 Production",
+      "name": "Deploy on cl1 Production",
       "refId": "6",
       "requisiteStageRefIds": [
         "5"
@@ -373,7 +373,7 @@
     {
       "clusters": [
         {
-          "account": "gke_PROJECT_GCP_ZONE_cluster-2",
+          "account": "gke_PROJECT_ZONE_2_GKE_2",
           "application": "myapp",
           "cloudProvider": "kubernetes",
           "containers": [
@@ -449,7 +449,7 @@
           "volumeSources": []
         }
       ],
-      "name": "Deploy on Cluster-2 Production",
+      "name": "Deploy on cl2 Production",
       "refId": "7",
       "requisiteStageRefIds": [
         "5"
