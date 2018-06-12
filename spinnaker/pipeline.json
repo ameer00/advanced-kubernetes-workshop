@@ -16,7 +16,7 @@
           "containers": [
             {
               "args": [
-                "-name=myapp-canary-cl1-$(VOLUME)"
+                "-name=myapp-canary-GKE_1-$(VOLUME)"
               ],
               "command": [],
               "envFrom": [],
