@@ -1,5 +1,5 @@
 steps:
 - name: 'gcr.io/hightowerlabs/server:0.0.1'
-  args: [ 'build', '-t', 'gcr.io/$PROJECT/web-server', '.' ]
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/web-server', '.' ]
 images:
-- 'gcr.io/$PROJECT/web-server'
+- 'gcr.io/$PROJECT_ID/web-server'
