@@ -17,6 +17,12 @@ wget https://raw.githubusercontent.com/ahmetb/kubectl-alias/master/.kubectl_alia
 echo "[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases" >> $HOME/.bashrc
 source ~/.bashrc
 
+# Install Terraform
+cd $HOME
+wget https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip
+unzip terraform_0.11.7_linux_amd64.zip
+cp terraform $HOME/bin/
+
 # Install Helm
 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
 chmod 700 get_helm.sh
