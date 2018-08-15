@@ -22,13 +22,13 @@ gcloud iam service-accounts keys create $SERVICE_ACCOUNT_DEST \
     --iam-account $SA_EMAIL
 ```
 
-Add Project ID to the Provider section.
+Add Project ID to the Project section.
 
 ```
-sed -i -e s/PROJECT/$PROJECT/g variables.tf
+sed -i -e s/PROJECT/$PROJECT/g project/variables.tf
 ```
 
-Initialize Terraform (from the Provider folder)
+Initialize Terraform (from the Main folder)
 
 ```
 terraform init
