@@ -11,6 +11,12 @@ sudo ln -s $HOME/kubectx/kubens $HOME/bin/kubens
 # Install hey
 go get -u github.com/rakyll/hey
 
+# Install kubectl aliases
+cd $HOME
+wget https://raw.githubusercontent.com/ahmetb/kubectl-alias/master/.kubectl_aliases
+echo "[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases" >> $HOME/.bashrc
+source ~/.bashrc
+
 # Install Helm
 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
 chmod 700 get_helm.sh
